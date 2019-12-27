@@ -1,0 +1,30 @@
+<ns0:test-suite xmlns:ns0="urn:model.allure.qatools.yandex.ru" start="1577355720111" stop="1577355720152">
+  <name>Script</name>
+  <labels/>
+  <test-cases>
+    <test-case start="1577355720111" status="failed" stop="1577355720152">
+      <name>test_add_png.TestAddPng.test_001</name>
+      <failure>
+        <message>FileNotFoundError: [Errno 2] No such file or directory: './Image\\abc.png'</message>
+        <stack-trace>self = &lt;Script.test_add_png.TestAddPng object at 0x03763EB0&gt;
+
+    def test_001(self):
+        #添加txt附件到allure报告
+        #allure.attach("附件名字", "附件内容")
+&gt;       with open("./Image" + os.sep + "abc.png", "rb") as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: './Image\\abc.png'
+
+test_add_png.py:8: FileNotFoundError</stack-trace>
+      </failure>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="26024-MainThread"/>
+        <label name="host" value="LAPTOP-6VNLHDUH"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps/>
+    </test-case>
+  </test-cases>
+</ns0:test-suite>

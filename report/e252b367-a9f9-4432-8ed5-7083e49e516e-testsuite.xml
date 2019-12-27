@@ -1,0 +1,426 @@
+<ns0:test-suite xmlns:ns0="urn:model.allure.qatools.yandex.ru" start="1577418914563" stop="1577419034757">
+  <name>Script</name>
+  <labels/>
+  <test-cases>
+    <test-case start="1577418914563" status="passed" stop="1577418947901">
+      <description>
+        测试方法
+        :param phone: 手机号
+        :param password: 密码
+        :param mess: 提示消息拼接内容
+        :param expData: 预期结果
+        :return:
+        </description>
+      <name>test_login.TestLogin.test_login[15847273955-xlj580231-None-960228]</name>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="5840-MainThread"/>
+        <label name="host" value="LAPTOP-6VNLHDUH"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps/>
+    </test-case>
+    <test-case start="1577418947902" status="failed" stop="1577418967377">
+      <description>
+        测试方法
+        :param phone: 手机号
+        :param password: 密码
+        :param mess: 提示消息拼接内容
+        :param expData: 预期结果
+        :return:
+        </description>
+      <name>test_login.TestLogin.test_login[ 15847273955-xlj580231-None-xlj0415]</name>
+      <failure>
+        <message>FileNotFoundError: [Errno 2] No such file or directory: './Image\\1577418956.png'</message>
+        <stack-trace>self = &lt;Script.test_login.TestLogin object at 0x04B1E970&gt;, phone = ' 15847273955', password = 'xlj580231', mess = None, expData = 'xlj0415'
+
+    @pytest.mark.parametrize("phone, password, mess, expData", login_value())
+    def test_login(self, phone, password, mess, expData):
+        """
+            测试方法
+            :param phone: 手机号
+            :param password: 密码
+            :param mess: 提示消息拼接内容
+            :param expData: 预期结果
+            :return:
+            """
+        #登录操作
+        self.page_obj.get_login_page().login(phone, password)
+        #判断用例的走向
+        if mess:
+            """失败用例"""
+            #获取toast消息
+            toast_message = self.page_obj.get_login_page().get_toast(mess)
+            try:
+                #断言assert
+                assert toast_message == expData
+            except AssertionError as e:  #断言失败异常
+                #截图
+                self.page_obj.get_setting_page().screen_png_adb("预期断言失败截图")
+                #抛出异常
+                raise e
+            finally:
+                #登录返回
+                self.page_obj.get_login_page().click_return_btn()
+    
+        else:
+            """成功用例"""
+            #登录确认
+            self.page_obj.get_login_page().click_login_acc_btn()
+    
+            #取用户名
+            username = self.page_obj.get_person_page().get_username()
+            print(username)
+    
+            try:
+                #断言用户名
+&gt;               assert username == expData
+E               AssertionError: assert '960228' == 'xlj0415'
+E                 - 960228
+E                 + xlj0415
+
+Script\test_login.py:85: AssertionError
+
+During handling of the above exception, another exception occurred:
+
+self = &lt;Script.test_login.TestLogin object at 0x04B1E970&gt;, phone = ' 15847273955', password = 'xlj580231', mess = None, expData = 'xlj0415'
+
+    @pytest.mark.parametrize("phone, password, mess, expData", login_value())
+    def test_login(self, phone, password, mess, expData):
+        """
+            测试方法
+            :param phone: 手机号
+            :param password: 密码
+            :param mess: 提示消息拼接内容
+            :param expData: 预期结果
+            :return:
+            """
+        #登录操作
+        self.page_obj.get_login_page().login(phone, password)
+        #判断用例的走向
+        if mess:
+            """失败用例"""
+            #获取toast消息
+            toast_message = self.page_obj.get_login_page().get_toast(mess)
+            try:
+                #断言assert
+                assert toast_message == expData
+            except AssertionError as e:  #断言失败异常
+                #截图
+                self.page_obj.get_setting_page().screen_png_adb("预期断言失败截图")
+                #抛出异常
+                raise e
+            finally:
+                #登录返回
+                self.page_obj.get_login_page().click_return_btn()
+    
+        else:
+            """成功用例"""
+            #登录确认
+            self.page_obj.get_login_page().click_login_acc_btn()
+    
+            #取用户名
+            username = self.page_obj.get_person_page().get_username()
+            print(username)
+    
+            try:
+                #断言用户名
+                assert username == expData
+            except AssertionError as e:
+                #截图
+&gt;               self.page_obj.get_login_page().screen_png_adb("预期断言成功截图")
+
+Script\test_login.py:88: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Page.loginPage.LoginPage object at 0x04B1A270&gt;, name = '预期断言成功截图'
+
+    def screen_png_adb(self, name="截图"):
+        """截图方案二"""
+        #图片名字
+        png_name = "{}.png".format(int(time.time()))
+        #使用adb截图 adb shell screencap -p /sdcard/xx.png
+        os.system("adb shell screencap -p /sdcard/{}.png".format(png_name))
+    
+        # 从手机通过adb拉去图片到截图目录 Image adb pull /sdcard/xx.png ./Image
+        os.system("adb pull /sdcard/{}.png ./Image".format(png_name))
+        #添加图片到allure报告
+&gt;       with open("./Image" +os.sep + png_name, "rb") as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: './Image\\1577418956.png'
+
+Base\base.py:128: FileNotFoundError</stack-trace>
+      </failure>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="5840-MainThread"/>
+        <label name="host" value="LAPTOP-6VNLHDUH"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps/>
+    </test-case>
+    <test-case start="1577418967378" status="failed" stop="1577418987402">
+      <description>
+        测试方法
+        :param phone: 手机号
+        :param password: 密码
+        :param mess: 提示消息拼接内容
+        :param expData: 预期结果
+        :return:
+        </description>
+      <name>test_login.TestLogin.test_login[15847273955 -xlj580231-None-xlj0415]</name>
+      <failure>
+        <message>FileNotFoundError: [Errno 2] No such file or directory: './Image\\1577418975.png'</message>
+        <stack-trace>self = &lt;Script.test_login.TestLogin object at 0x05002990&gt;, phone = '15847273955 ', password = 'xlj580231', mess = None, expData = 'xlj0415'
+
+    @pytest.mark.parametrize("phone, password, mess, expData", login_value())
+    def test_login(self, phone, password, mess, expData):
+        """
+            测试方法
+            :param phone: 手机号
+            :param password: 密码
+            :param mess: 提示消息拼接内容
+            :param expData: 预期结果
+            :return:
+            """
+        #登录操作
+        self.page_obj.get_login_page().login(phone, password)
+        #判断用例的走向
+        if mess:
+            """失败用例"""
+            #获取toast消息
+            toast_message = self.page_obj.get_login_page().get_toast(mess)
+            try:
+                #断言assert
+                assert toast_message == expData
+            except AssertionError as e:  #断言失败异常
+                #截图
+                self.page_obj.get_setting_page().screen_png_adb("预期断言失败截图")
+                #抛出异常
+                raise e
+            finally:
+                #登录返回
+                self.page_obj.get_login_page().click_return_btn()
+    
+        else:
+            """成功用例"""
+            #登录确认
+            self.page_obj.get_login_page().click_login_acc_btn()
+    
+            #取用户名
+            username = self.page_obj.get_person_page().get_username()
+            print(username)
+    
+            try:
+                #断言用户名
+&gt;               assert username == expData
+E               AssertionError: assert '960228' == 'xlj0415'
+E                 - 960228
+E                 + xlj0415
+
+Script\test_login.py:85: AssertionError
+
+During handling of the above exception, another exception occurred:
+
+self = &lt;Script.test_login.TestLogin object at 0x05002990&gt;, phone = '15847273955 ', password = 'xlj580231', mess = None, expData = 'xlj0415'
+
+    @pytest.mark.parametrize("phone, password, mess, expData", login_value())
+    def test_login(self, phone, password, mess, expData):
+        """
+            测试方法
+            :param phone: 手机号
+            :param password: 密码
+            :param mess: 提示消息拼接内容
+            :param expData: 预期结果
+            :return:
+            """
+        #登录操作
+        self.page_obj.get_login_page().login(phone, password)
+        #判断用例的走向
+        if mess:
+            """失败用例"""
+            #获取toast消息
+            toast_message = self.page_obj.get_login_page().get_toast(mess)
+            try:
+                #断言assert
+                assert toast_message == expData
+            except AssertionError as e:  #断言失败异常
+                #截图
+                self.page_obj.get_setting_page().screen_png_adb("预期断言失败截图")
+                #抛出异常
+                raise e
+            finally:
+                #登录返回
+                self.page_obj.get_login_page().click_return_btn()
+    
+        else:
+            """成功用例"""
+            #登录确认
+            self.page_obj.get_login_page().click_login_acc_btn()
+    
+            #取用户名
+            username = self.page_obj.get_person_page().get_username()
+            print(username)
+    
+            try:
+                #断言用户名
+                assert username == expData
+            except AssertionError as e:
+                #截图
+&gt;               self.page_obj.get_login_page().screen_png_adb("预期断言成功截图")
+
+Script\test_login.py:88: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Page.loginPage.LoginPage object at 0x050020F0&gt;, name = '预期断言成功截图'
+
+    def screen_png_adb(self, name="截图"):
+        """截图方案二"""
+        #图片名字
+        png_name = "{}.png".format(int(time.time()))
+        #使用adb截图 adb shell screencap -p /sdcard/xx.png
+        os.system("adb shell screencap -p /sdcard/{}.png".format(png_name))
+    
+        # 从手机通过adb拉去图片到截图目录 Image adb pull /sdcard/xx.png ./Image
+        os.system("adb pull /sdcard/{}.png ./Image".format(png_name))
+        #添加图片到allure报告
+&gt;       with open("./Image" +os.sep + png_name, "rb") as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: './Image\\1577418975.png'
+
+Base\base.py:128: FileNotFoundError</stack-trace>
+      </failure>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="5840-MainThread"/>
+        <label name="host" value="LAPTOP-6VNLHDUH"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps/>
+    </test-case>
+    <test-case start="1577418987403" status="passed" stop="1577418993925">
+      <description>
+        测试方法
+        :param phone: 手机号
+        :param password: 密码
+        :param mess: 提示消息拼接内容
+        :param expData: 预期结果
+        :return:
+        </description>
+      <name>test_login.TestLogin.test_login[15847273955-159357-\u9519\u8bef-\u8d26\u53f7\u6216\u5bc6\u7801\u9519\u8bef]</name>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="5840-MainThread"/>
+        <label name="host" value="LAPTOP-6VNLHDUH"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps/>
+    </test-case>
+    <test-case start="1577418993926" status="passed" stop="1577419002415">
+      <description>
+        测试方法
+        :param phone: 手机号
+        :param password: 密码
+        :param mess: 提示消息拼接内容
+        :param expData: 预期结果
+        :return:
+        </description>
+      <name>test_login.TestLogin.test_login[1584727395-159357-\u8fd8\u672a\u6ce8\u518c-\u8d26\u53f7\u8fd8\u672a\u6ce8\u518c\uff0c\u8bf7\u60a8\u5148\u8fdb\u884c\u6ce8\u518c]</name>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="5840-MainThread"/>
+        <label name="host" value="LAPTOP-6VNLHDUH"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps/>
+    </test-case>
+    <test-case start="1577419002416" status="passed" stop="1577419010481">
+      <description>
+        测试方法
+        :param phone: 手机号
+        :param password: 密码
+        :param mess: 提示消息拼接内容
+        :param expData: 预期结果
+        :return:
+        </description>
+      <name>test_login.TestLogin.test_login[158472739555-159357-\u8fd8\u672a\u6ce8\u518c-\u8d26\u53f7\u8fd8\u672a\u6ce8\u518c\uff0c\u8bf7\u60a8\u5148\u8fdb\u884c\u6ce8\u518c]</name>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="5840-MainThread"/>
+        <label name="host" value="LAPTOP-6VNLHDUH"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps/>
+    </test-case>
+    <test-case start="1577419010482" status="passed" stop="1577419018643">
+      <description>
+        测试方法
+        :param phone: 手机号
+        :param password: 密码
+        :param mess: 提示消息拼接内容
+        :param expData: 预期结果
+        :return:
+        </description>
+      <name>test_login.TestLogin.test_login[11488834011-159357-\u8fd8\u672a\u6ce8\u518c-\u8d26\u53f7\u8fd8\u672a\u6ce8\u518c\uff0c\u8bf7\u60a8\u5148\u8fdb\u884c\u6ce8\u518c]</name>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="5840-MainThread"/>
+        <label name="host" value="LAPTOP-6VNLHDUH"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps/>
+    </test-case>
+    <test-case start="1577419018644" status="passed" stop="1577419026846">
+      <description>
+        测试方法
+        :param phone: 手机号
+        :param password: 密码
+        :param mess: 提示消息拼接内容
+        :param expData: 预期结果
+        :return:
+        </description>
+      <name>test_login.TestLogin.test_login[hello#-159357-\u8fd8\u672a\u6ce8\u518c-\u8d26\u53f7\u8fd8\u672a\u6ce8\u518c\uff0c\u8bf7\u60a8\u5148\u8fdb\u884c\u6ce8\u518c]</name>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="5840-MainThread"/>
+        <label name="host" value="LAPTOP-6VNLHDUH"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps/>
+    </test-case>
+    <test-case start="1577419026847" status="passed" stop="1577419034757">
+      <description>
+        测试方法
+        :param phone: 手机号
+        :param password: 密码
+        :param mess: 提示消息拼接内容
+        :param expData: 预期结果
+        :return:
+        </description>
+      <name>test_login.TestLogin.test_login[13333333333-159357-\u8fd8\u672a\u6ce8\u518c-\u8d26\u53f7\u8fd8\u672a\u6ce8\u518c\uff0c\u8bf7\u60a8\u5148\u8fdb\u884c\u6ce8\u518c]</name>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="5840-MainThread"/>
+        <label name="host" value="LAPTOP-6VNLHDUH"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps/>
+    </test-case>
+  </test-cases>
+</ns0:test-suite>

@@ -1,0 +1,46 @@
+login_001:
+  phone: "15847273955"
+  password: "xlj580231"
+  mess:
+  expData: "960228"
+login_002:
+  phone: " 15847273955"
+  passwd: "xlj580231"
+  mess:
+  expData: "xlj0415"
+login_003:
+  phone: "15847273955 "
+  passwd: "xlj580231"
+  mess:
+  expData: "xlj0415"
+
+login_005:
+  phone: "15847273955"
+  password: "159357"
+  mess: "错误"
+  expData: "账号或密码错误"
+login_009:
+  phone: "1584727395"
+  passwd: "159357"
+  mess: "还未注册"
+  expData: "账号还未注册，请您先进行注册"
+login_010:
+  phone: "158472739555"
+  passwd: "159357"
+  mess: "还未注册"
+  expData: "账号还未注册，请您先进行注册"
+login_011:
+  phone: "11488834011"
+  passwd: "159357"
+  mess: "还未注册"
+  expData: "账号还未注册，请您先进行注册"
+login_012:
+  phone: "hello#"
+  passwd: "159357"
+  mess: "还未注册"
+  expData: "账号还未注册，请您先进行注册"
+login_013:
+  phone: "13333333333"
+  passwd: "159357"
+  mess: "还未注册"
+  expData: "账号还未注册，请您先进行注册"
